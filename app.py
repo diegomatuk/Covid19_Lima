@@ -118,8 +118,11 @@ app.layout = html.Div(children=[
 
                                                             )}
                                                        ),
-
-                                            html.Iframe(id = 'mapa1', srcDoc = open('folium.html','r').read(),height = '600',style = {'margin':'2px'}),
+                                            html.H2('Optimización de Rutas'),
+                                            html.Iframe(id = 'mapa1', 
+                                                        srcDoc = open('folium.html','r').read(),
+                                                        height = '600',
+                                                        style = {'margin':'2px'}),
                                           ])
                                ])
 ])
