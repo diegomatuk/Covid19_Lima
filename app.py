@@ -51,6 +51,7 @@ app.layout = html.Div(children=[
                                                   date=dt(2020, 6, 20).date(),
                                                   display_format='DD/MM/Y',
                                                   month_format='MMM Do, YYYY'),
+                                              html.P("* simulated data")
 
                                               html.Br(),
                                               html.Br(),
