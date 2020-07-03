@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import random as rnd
 import networkx as nx
-import osmnx as ox
 
 class Inputs():
     def __init__(self,num_points = None):
@@ -78,3 +77,23 @@ class Inputs():
                 distance = nx.shortest_path_length(g,source = temp1,target = temp2)
                 matrix[row,column] = distance
         return matrix, lat_lon, demand
+
+    def prediccion(self,date,df):
+        from datetime import timedelta
+        from datetime import datetime
+        pred_date = datetime.strptime(date,"%Y-%m-%d") + timedelta(days = 1)
+        print(pred_date)
+        predicciones = []
+        names = []
+        lat = []
+        lon = []
+        df = df[df.date<date]
+        for name in np.array(df.Name.unique()):
+            caso = df[df.Name == name]
+            pred = np.sum(caso.current_count[-7:-1])/6
+            names.append(name)
+            predicciones.append(np.round(pred))
+
+        pred_df = pd.DataFrame({'name':names,'prediction':np.array(predicciones)/100})
+        pred_df['prediction_date'] = pred_date
+        return pred_df
